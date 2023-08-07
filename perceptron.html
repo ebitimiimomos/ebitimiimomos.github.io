@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Google Fots -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+      <!-- Remixicon Icon -->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+      <!-- Remixicon Icon -->
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <!-- Main CSS -->
+      <link href="assets/css/main.css" rel="stylesheet">
+
+
+    <title>Perceptron</title>
+  </head>
+  <body>
+   
+    <!-- header -->
+    <header class="ds-header" id="site-header">
+        <div class="container">
+            <div class="ds-header-inner">
+              <!-- logo -->
+              <a href="index.html" class="ds-logo">
+                <span>E</span>Ebitimi Imomos
+              </a>
+              <div class="text-center">
+                <a href="index.html#ds-work-section" class="ds-button ds-arrow-button"><i class="ri-arrow-left-s-line"></i> BAck</a>
+              </div>
+              <!-- logo -->
+              <!-- social -->
+              <ul class="ds-social">
+                <li><a href="https://github.com/ebitimiimomos" target="_blank"><i class="ri-github-fill"></i></a></li>
+                <li><a href="https://leetcode.com/Ebitimi/" target="_blank"><i class="iconify" data-icon="simple-icons:leetcode"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/ebitimi-imomotebegha-5a06b019a/" target="_blank"><i class="ri-linkedin-fill"></i></a></li>
+              </ul>
+              <!-- social -->
+            </div>
+        </div>
+    </header>
+    <!-- header -->
+   
+   <main class="ds-main-section">
+     <div class="container">
+        <div class="ds-work-details-section">
+
+            <div class="row justify-content-center">
+              <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                  <header class="ds-work-det-hed">
+                      <h1 class="ds-work-det-title">Perceptron Learning Algorithm</h1>
+                      <span class="ds-work-det-dep">Python + Ms Excel + Ms Word</span>
+                  </header>
+                  <figure><img src="assets/images/perceptron2.JPG"></figure>
+
+                  <div class="ds-work-content-sec">
+
+                    <div class="ds-button-sec text-center" id="ds-button-sec">
+                      <a href="https://1drv.ms/u/s!AiMftykPpguWgk_KGAuzoV-ozcFH?e=6NSqbW" target="_blank" rel="noopener noreferrer" class="ds-button" id="ds-button">View Code</a>
+                   </div>
+
+                      <div class="row justify-content-center">
+                          <div>
+								
+                                
+
+  <h3>Introduction</h3>
+  <p>This project delves into the implementation and evaluation of the Perceptron algorithm for binary classification as well as offers detailed insights and findings. The Perceptron algorithm is a single-layer neural network that effectively separates data into two classes using a hyperplane. It employs four main parameters: input values, weights, bias, and an activation function.</p>
+
+  
+  <pre>
+  <code>
+    def perceptronTrain(train, maxIter):
+    '''
+    function trains a binary classifier using the perceptron algorithm.
+    '''
+
+    # Initialize weighteight vector and bias term
+    n_X = len(train[0][0]) # Get the number of features in the input
+    weight = [0.0] * n_X # Initialize the weight vector as a list of zeros
+    bias = 0.0 # Initialize the bias term to zero
+
+    # Loop over training set for a maximum numbiaser of iterations
+    for iter in range(maxIter):
+        # Loop over all training examples
+        for X, y in train:
+            # Compute activation code as the dot product of the weight vector and the input,
+            # plus the bias term
+            a = sum([weight[i] * X[i] for i in range(n_X)]) + bias
+            # Update weight and bias if prediction is incorrect
+            if y * a <= 0:
+                weight = [weight[i] + y * X[i] for i in range(n_X)]
+                # Update the bias term by adding the label multiplied by the learning rate
+                bias += y
+
+    # Return parameters
+    return bias, weight
+  </code>
+</pre>
+<h3>Training Procedure</h3>
+  <p>The training procedure involves presenting the algorithm with a series of training examples, each consisting of an input vector and a corresponding target output. The objective is to adjust the weight vector and bias term to accurately classify the training instances. If the prediction is incorrect, the weight and bias are updated by multiplying the difference between the expected and actual outputs with a learning rate and the input vector. The process continues until all training examples are correctly classified or a predetermined number of iterations is reached.</p>
+
+  <h3>Testing Procedure</h3>
+  <p>The testing procedure utilizes a trained Perceptron model to categorize additional input vectors. The model calculates the activation by multiplying the weight vector with the input and adding the bias term. If the activation is greater than or equal to zero, the input is classified as positive; otherwise, it is classified as negative.</p>
+
+  <pre>
+    <code>
+      # 1 vs rest
+      # Prepare the training and testing data for classification between Class 1 and the rest
+      Multi_class1vsrest_train = dataPrep(train, 1, multiclass=True)
+      Multi_class1vsrest_test = dataPrep(test, 1, multiclass=True)
+      # Train the perceptron on the training data for classification between Class 1 and the rest
+      perceptronTrain(Multi_class1vsrest_train, 20)
+      
+      # 2 vs rest
+      # Prepare the training and testing data for classification between Class 2 and the rest
+      Multi_class2vsrest_train = dataPrep(train, 2, multiclass=True)
+      Multi_class2vsrest_test = dataPrep(test, 2, multiclass=True)
+      # Train the perceptron on the training data for classification between Class 2 and the rest
+      perceptronTrain(Multi_class2vsrest_train, 20)
+      
+      # 3 vs rest
+      # Prepare the training and testing data for classification between Class 3 and the rest
+      Multi_class3vsrest_train = dataPrep(train, 3, multiclass=True)
+      Multi_class3vsrest_test = dataPrep(test, 3, multiclass=True)
+      # Train the perceptron on the training data for classification between Class 3 and the rest
+      perceptronTrain(Multi_class3vsrest_train, 20)
+      
+    
+    </code>
+    </pre>
+    
+  <h3>Extension to Multi-Class Classification</h3>
+  <p>I also attempt to code an extension of the binary Perceptron to multi-class classification using the one-vs-rest (OvR) approach. Multiple binary classifiers are trained, each differentiating one class from the rest. For a new sample, each binary classifier computes an activation code, and the class with the highest activation is assigned as the predicted class.</p>
+
+  <h3>Evaluation of Performance</h3>
+  <p>For binary classifiers, high train accuracies above 90% were achieved, but test accuracies varied, indicating some degree of overfitting. The multi-class classifiers demonstrated high accuracy for some classes while struggling with the classification of a specific class.</p>
+
+  <h3>Impact of Regularization</h3>
+  <p>The train and test accuracies are presented for different regularization coefficients. It was observed that moderate regularization coefficients improved generalization, while higher coefficients led to overfitting and reduced accuracies.</p>
+  <pre>
+    <code>
+      def RegperceptronTrain(train, maxIter, RC):
+      # Initialize weighteight vector and bias term
+      n_X = len(train[0][0])
+      weight = [0.0] * n_X
+      ## Weight vector is a list with the same length
+      # as the number of features in each training example, initialized with zeros
+      bias = 0.0
+      # Bias term is initialized with zero
+  
+  
+      # Loop over training set for a maximum numbiaser of iterations
+      for iter in range(maxIter):
+          # Loop over all training examples
+          for X, y in train:
+              # Compute activation
+              a = sum([weight[i] * X[i] for i in range(n_X)]) + bias
+  
+              # Update weight and bias if prediction is incorrect
+              if y * a <= 0: # Check if the prediction for the current training example is incorrect
+                  for i in range(n_X): # Update the weights using the current training example and the regularization constant
+                      weight[i] = weight[i] + y * X[i] -(2*RC*weight[i])
+                      bias += y
+      # Return learned parameters
+      return bias, weight
+    
+    </code>
+    </pre>
+    
+  <h3>Conclusion</h3>
+  <p>In conclusion, the project provides comprehensive insights into the implementation, evaluation, and findings of the Perceptron algorithm for binary and multi-class classification. The results highlight the strengths and limitations of the algorithm, emphasizing the importance of regularization for optimal performance.</p>
+                          </div>
+                      </div>
+					  
+                  </div>
+                 
+              </div>
+            </div>
+        </div>
+     </div>
+   </main>
+
+   <!--  footer -->
+   <footer class="ds-footer text-center" id="ds-footer">
+    <div class="container">
+       <section>
+         <span>Contact</span>
+         <h4>Ready to talk?</h4>
+         <p>Feel free to contact me</p>
+         <a href="mailto:ebitimiimomos@outlook.com" class="ds-button">Send Me a Message!</a>
+         
+                       <ul class="ds-social">
+               <li><a href="https://github.com/ebitimiimomos" target="_blank"><i class="ri-github-fill"></i></a></li>
+               <li><a href="https://leetcode.com/Ebitimi/" target="_blank"><i class="iconify" data-icon="simple-icons:leetcode"></i></a></li>
+               <li><a href="https://www.linkedin.com/in/ebitimi-imomotebegha-5a06b019a/" target="_blank"><i class="ri-linkedin-fill"></i></a></li>
+             </ul>
+       </section>
+       <span class="ds-copyright">© 2023 Ebitimi Imomotebegha.</span>
+    </div>
+    
+    
+    
+  </footer>
+  
+  
+
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <!-- Option 1: Bootstrap Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+   <!-- Option 2: Separate Popper and Bootstrap JS -->
+   <!--
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+   -->
+   <script src="assets/js/main.js"></script>
+ </body>
+</html>

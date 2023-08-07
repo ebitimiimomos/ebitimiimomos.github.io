@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Google Fots -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+      <!-- Remixicon Icon -->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+      <!-- Remixicon Icon -->
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <!-- Main CSS -->
+      <link href="assets/css/main.css" rel="stylesheet">
+
+
+    <title>Voting</title>
+  </head>
+  <body>
+   
+    <!-- header -->
+    <header class="ds-header" id="site-header">
+        <div class="container">
+            <div class="ds-header-inner">
+              <!-- logo -->
+              <a href="index.html" class="ds-logo">
+                <span>E</span>Ebitimi Imomos
+              </a>
+              <div class="text-center">
+                <a href="index.html#ds-work-section" class="ds-button ds-arrow-button"><i class="ri-arrow-left-s-line"></i> BAck</a>
+              </div>
+              <!-- logo -->
+              <!-- social -->
+              <ul class="ds-social">
+                <li><a href="https://github.com/ebitimiimomos" target="_blank"><i class="ri-github-fill"></i></a></li>
+                <li><a href="https://leetcode.com/Ebitimi/" target="_blank"><i class="iconify" data-icon="simple-icons:leetcode"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/ebitimi-imomotebegha-5a06b019a/" target="_blank"><i class="ri-linkedin-fill"></i></a></li>
+              </ul>
+              <!-- social -->
+            </div>
+        </div>
+    </header>
+    <!-- header -->
+   
+   <main class="ds-main-section">
+     <div class="container">
+        <div class="ds-work-details-section">
+            <div class="row justify-content-center">
+              <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                  <header class="ds-work-det-hed">
+                      <h1 class="ds-work-det-title">Implement several voting rules</h1>
+                      <span class="ds-work-det-dep">Python + Ms Excel + Ms Word</span>
+                  </header>
+                  <figure><img src="assets/images/voting1.jpeg"></figure>
+                  <div class="ds-button-sec text-center" id="ds-button-sec">
+                    <a href="https://1drv.ms/u/s!AiMftykPpguWgkRC3jobTGhj7-Zj?e=xBElox" target="_blank" rel="noopener noreferrer" class="ds-button" id="ds-button">View Code</a>
+                 </div>
+                  <div class="ds-work-content-sec">
+                      <div class="row justify-content-center">
+                          <div >
+                            <h2>Project Overview</h2>
+                            <p>In this project, I implemented various voting systems using Python and the openpyxl library for handling Excel worksheets. I created several functions to simulate different voting methods and resolve ties based on user-defined rules.</p>
+                            <h2>Task 1: generatePreferences Function</h2>
+                            <pre><code>def generatePreferences(worksheet):
+                              # Function to extract values from the Excel worksheet and create a preferences dictionary
+                              # ...
+                            </code></pre>
+                            <p>In Task 1, I implemented the `generatePreferences` function, which extracts values from an Excel worksheet using openpyxl. The function reads the values from the worksheet and creates a preferences dictionary that holds the preference orderings of each agent for the alternatives.</p>
+                            <h2>Task 2: Implementing Voting Systems</h2>
+                            <pre><code>def dictatorship(dictator, alternatives):
+                              # Function to simulate the dictatorship voting system
+                              # ...
+                          def scoringRule(agents, alternatives):
+                          # Function to calculate the winner based on agents' scores for alternatives
+                          # ...
+                          
+                          def plurality(preferences, alternatives):
+                          # Function to determine the winner using the plurality voting system
+                          # ...
+                          
+                          def veto(preferences, alternatives):
+                          # Function to rank alternatives based on veto votes
+                          # ...
+                          
+                          def borda(preferences, alternatives):
+                          # Function to assign scores to alternatives based on their ranks and select the one with the highest score
+                          # ...
+                          
+                          def harmonic(preferences, alternatives):
+                          # Function to calculate scores based on the harmonic mean of ranks and select the one with the highest score
+                          # ...
+                          
+                          def tieBreaker(tied_alternatives, tie_breaking_rule):
+                          # Function to resolve ties based on user-defined rules
+                          # ...
+                          </code></pre>
+                          
+                            <p>Task 2 involved implementing five different voting systems: dictatorship, scoring rule, plurality, veto, borda, and harmonic. The `dictatorship` function allows a dictator agent to make a decision, and the `scoringRule` function calculates the winner based on agents' scores for alternatives.</p>
+                            <p>The `plurality` function determines the winner by selecting the alternative with the most first-place votes. The `veto` function ranks alternatives based on the number of times they are ranked higher than others, and the `borda` function assigns scores to alternatives based on their ranks and selects the one with the highest score.</p>
+                            <p>The `harmonic` function calculates the scores for each alternative based on the harmonic mean of their ranks and selects the one with the highest score. In all these functions, tie-breaking is implemented using the `tieBreaker` function, which resolves ties based on user-defined rules.</p>
+                            <h2>Additional Voting Systems</h2>
+                            <pre><code>def STV(preferences, alternatives):
+                              # Function to simulate the Single Transferable Vote (STV) system
+                              # ...
+                          def rangeVoting(agents, alternatives):
+                          # Function to calculate scores for alternatives based on agents' numeric preferences
+                          # ...
+                          </code></pre>
+                          
+                            <p>Lastly, I implemented two additional voting systems, STV (Single Transferable Vote) and rangeVoting, which were not part of Task 2. The `STV` function simulates the transferable vote system, and the `rangeVoting` function calculates scores for alternatives based on agents' numeric preferences.</p>
+                            <h2>Conclusion</h2>
+                            <p>This project provides a comprehensive set of functions to simulate various voting systems and handle tie-breaking scenarios based on specified rules. It demonstrates the flexibility and applicability of Python in implementing voting algorithms and opens up possibilities for further exploration and improvements in voting simulation and analysis.</p>
+
+                          </div>
+                      </div>
+					
+                  </div>
+                 
+              </div>
+            </div>
+        </div>
+     </div>
+   </main>
+   <!--  footer -->
+   <footer class="ds-footer text-center" id="ds-footer">
+    <div class="container">
+       <section>
+         <span>Contact</span>
+         <h4>Ready to talk?</h4>
+         <p>Feel free to contact me</p>
+         <a href="mailto:ebitimiimomos@outlook.com" class="ds-button">Send Me a Message!</a>
+         
+                       <ul class="ds-social">
+               <li><a href="https://github.com/ebitimiimomos" target="_blank"><i class="ri-github-fill"></i></a></li>
+               <li><a href="https://leetcode.com/Ebitimi/" target="_blank"><i class="iconify" data-icon="simple-icons:leetcode"></i></a></li>
+               <li><a href="https://www.linkedin.com/in/ebitimi-imomotebegha-5a06b019a/" target="_blank"><i class="ri-linkedin-fill"></i></a></li>
+             </ul>
+       </section>
+       <span class="ds-copyright">© 2023 Ebitimi Imomotebegha.</span>
+    </div>
+    
+    
+    
+  </footer>
+  
+  
+
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <!-- Option 1: Bootstrap Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+   <!-- Option 2: Separate Popper and Bootstrap JS -->
+   <!--
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+   -->
+   <script src="assets/js/main.js"></script>
+ </body>
+</html>

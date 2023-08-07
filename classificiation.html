@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Google Fots -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+      <!-- Remixicon Icon -->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+      <!-- Remixicon Icon -->
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <!-- Main CSS -->
+      <link href="assets/css/main.css" rel="stylesheet">
+
+
+    <title>Classification</title>
+  </head>
+  <body>
+   
+    <!-- header -->
+    <header class="ds-header" id="site-header">
+        <div class="container">
+            <div class="ds-header-inner">
+              <!-- logo -->
+              <a href="index.html" class="ds-logo">
+                <span>E</span>Ebitimi Imomos
+              </a>
+              <div class="text-center">
+                <a href="index.html#ds-work-section" class="ds-button ds-arrow-button"><i class="ri-arrow-left-s-line"></i> BAck</a>
+              </div>
+              <!-- logo -->
+              <!-- social -->
+              <ul class="ds-social">
+                <li><a href="https://github.com/ebitimiimomos" target="_blank"><i class="ri-github-fill"></i></a></li>
+                <li><a href="https://leetcode.com/Ebitimi/" target="_blank"><i class="iconify" data-icon="simple-icons:leetcode"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/ebitimi-imomotebegha-5a06b019a/" target="_blank"><i class="ri-linkedin-fill"></i></a></li>
+              </ul>
+              <!-- social -->
+            </div>
+        </div>
+    </header>
+    <!-- header -->
+   
+   <main class="ds-main-section">
+     <div class="container">
+        <div class="ds-work-details-section">
+
+            <div class="row justify-content-center">
+              <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                  <header class="ds-work-det-hed">
+                      <h1 class="ds-work-det-title">Building a neural network model for classification problem</h1>
+                      <span class="ds-work-det-dep">Python + Ms Excel + Ms Word</span>
+                  </header>
+                  <figure><img src="assets/images/classificationproblem1.JPG"></figure>
+                  <div class="ds-button-sec text-center" id="ds-button-sec">
+                    <a href="https://1drv.ms/u/s!AiMftykPpguWgjx_ZEfg9ry5-wDn?e=X9hyaO" target="_blank" rel="noopener noreferrer" class="ds-button" id="ds-button">View Code</a>
+                 </div>
+                  <div class="ds-work-content-sec">
+                      <div class="row justify-content-center">
+                          <div >
+                            <p>In this project, I worked on building Multi-Layer Perceptron (MLP) and Convolutional Neural Network (CNN) models for image classification using the EMNIST dataset. The dataset contains 47 classes of handwritten character digits and is derived from the NIST Special Database 19, converted to a 28x28 pixel image format similar to the MNIST dataset.</p>
+                            <h2>Multi-Layer Perceptron (MLP)</h2>
+                            <pre>
+                              <code>
+                              
+                            class MLP(nn.Module):
+                              def __init__(self, input_size, hidden_size, num_classes, activation, batch_norm, dropout, regularization):
+                                  super(MLP, self).__init__()
+                                  self.fc1 = nn.Linear(input_size, hidden_size)
+                                  self.fc2 = nn.Linear(hidden_size, hidden_size)
+                                  self.fc3 = nn.Linear(hidden_size, hidden_size)
+                                  self.fc4 = nn.Linear(hidden_size, num_classes)
+                                  self.activation = activation
+                                  self.batch_norm = batch_norm
+                                  self.dropout = dropout
+                                  self.regularization = regularization
+                                  if self.batch_norm:
+                                      self.bn1 = nn.BatchNorm1d(hidden_size)
+                                      self.bn2 = nn.BatchNorm1d(hidden_size)
+                                      self.bn3 = nn.BatchNorm1d(hidden_size)
+                                  if self.regularization:
+                                      self.l1 = nn.L1Loss()
+                                      self.l2 = nn.MSELoss()
+                              
+                              </code>
+                              </pre>
+                              
+                            <p>For the MLP, I used PyTorch to develop a model with four fully linked layers, and I explored different techniques like batch normalization, dropout, L1, and L2 regularization. The model used cross-entropy loss, the Adam optimizer, and a learning rate scheduler to enhance training efficiency. Additionally, hyperparameter tuning was performed using a random search algorithm.</p>
+                            <h2>Convolutional Neural Network (CNN)</h2>
+                            <pre>
+                              <code>
+                                #defining the CNN model
+                                class CNN(nn.Module):
+                                    def __init__(self, input_size, num_classes, activation, batch_norm, dropout, regularization):
+                                        super(CNN, self).__init__()
+                                        # convolutional layer 1 and max pool layer 1
+                                        self.conv1 = nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
+                                        self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
+                                        # convolutional layer 2
+                                        self.conv2 = nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1, padding=0)
+                                        self.pool2 = nn.MaxPool2d(kernel_size=2) 
+                                        # fully connected layers and max pool layer 1
+                                        self.fc1 = nn.Linear(in_features=16 * 5 * 5, out_features=120)
+                                        self.fc2 = nn.Linear(in_features=120, out_features=84)
+                                        self.fc3 = nn.Linear(in_features=84, out_features=47)
+                                        self.activation = activation
+                                        self.batch_norm = batch_norm
+                                        self.dropout = dropout
+                                        self.regularization = regularization
+                                        if self.batch_norm:
+                                            self.bn1 = nn.BatchNorm2d(6)
+                                            self.bn2 = nn.BatchNorm2d(16)
+                                        if self.regularization:
+                                            self.l1 = nn.L1Loss()
+                                            self.l2 = nn.MSELoss()
+                              </code>
+                              </pre>
+
+                            <p>Similarly, for the CNN, I used PyTorch to develop a model with three fully connected layers, two max-pooling layers, and two convolutional layers. I explored different hyperparameters and techniques like activation function, batch normalization, dropout, and regularization to improve model performance and prevent overfitting.</p>
+                            <h2>Trade-offs and Techniques</h2>
+                            <p>Throughout the project, I considered the trade-offs between different techniques and hyperparameters. For instance, I explored different learning rate schedules like ReduceLROnPlateau and StepLR, which helped improve accuracy but increased computational expense. Activation functions like Sigmoid, ReLU, and tanh were compared, with ReLU being the optimal choice for preventing vanishing gradient problems.</p>
+                            <p>In terms of optimizers, I experimented with SGD, Adam, and RMSprop. Adam performed well, but sensitivity to initial learning rates and overfitting were observed. Batch normalization was beneficial for improving model stability, but it introduced noise when the batch size was small. L1 and L2 regularization were explored but found unnecessary as the models performed well without them.</p>
+                            <p>Dealing with overfitting was essential, and I managed it by tuning regularization and dropout techniques. Regularization helped by encouraging smaller weights and biases, while dropout prevented overreliance on specific neurons during training. By adjusting these techniques, I optimized the models' performance and accuracy on the validation set.</p>
+                            <pre>
+                              <code>
+                                def random_search_hyperparams(num_trials, data):
+                                startTime = time.time()
+                                # defining the range of values for each of the hyperparameter
+                                hyperparams = {
+                                    'activation': ['relu', 'sigmoid', 'tanh'], 
+                                    'opt': ['SGD', 'Adam', 'RMSprop'],
+                                    'batch_norm': [True, False],
+                                    'regularization': ['l1', 'l2', 'none'],
+                                    'dropout': [0.0, 0.2],
+                                    'scheduler': ['ReduceLROnPlateau', 'StepLR']
+                                }
+                            
+                                best_accuracy = 0.0
+                                best_hyperparams = None
+                            
+                                for i in range(num_trials):
+                                    # sample a set of hyperparameters at random to start
+                                    activation = random.choice(hyperparams['activation'])
+                                    opt = random.choice(hyperparams['opt'])
+                                    batch_norm = random.choice(hyperparams['batch_norm'])
+                                    regularization = random.choice(hyperparams['regularization'])
+                                    dropout = random.uniform(*hyperparams['dropout'])
+                                    scheduler = random.choice(hyperparams['scheduler'])
+                            
+                                    # Test the current set of hyperparameters
+                                    result = hyper_params_test(activation, opt, batch_norm, regularization, dropout, scheduler, data)
+                            
+                              </code>
+                              </pre>
+                              
+                            <h2>Comparison and Conclusion</h2>
+                            <p>Comparing the MLP and CNN models, the CNN outperformed the MLP in both training and testing accuracy. The CNN's complexity led to longer training times but allowed it to better capture spatial relationships in image data, making it more suitable for image classification tasks.</p>
+                            <p>In conclusion, this project taught me the importance of hyperparameter tuning and the impact of various techniques on model performance. It also highlighted the trade-offs between simplicity, training time, and accuracy when choosing between MLP and CNN models. Moving forward, I aim to improve project planning and time management for better organization and efficiency in future projects.</p>
+
+
+                          </div>
+                      </div>
+					  
+                  </div>
+                 
+              </div>
+            </div>
+        </div>
+     </div>
+   </main>
+
+   <!--  footer -->
+   <footer class="ds-footer text-center" id="ds-footer">
+    <div class="container">
+       <section>
+         <span>Contact</span>
+         <h4>Ready to talk?</h4>
+         <p>Feel free to contact me</p>
+         <a href="mailto:ebitimiimomos@outlook.com" class="ds-button">Send Me a Message!</a>
+         
+                       <ul class="ds-social">
+               <li><a href="https://github.com/ebitimiimomos" target="_blank"><i class="ri-github-fill"></i></a></li>
+               <li><a href="https://leetcode.com/Ebitimi/" target="_blank"><i class="iconify" data-icon="simple-icons:leetcode"></i></a></li>
+               <li><a href="https://www.linkedin.com/in/ebitimi-imomotebegha-5a06b019a/" target="_blank"><i class="ri-linkedin-fill"></i></a></li>
+             </ul>
+       </section>
+       <span class="ds-copyright">© 2023 Ebitimi Imomotebegha.</span>
+    </div>
+    
+    
+    
+  </footer>
+  
+  
+
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <!-- Option 1: Bootstrap Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+   <!-- Option 2: Separate Popper and Bootstrap JS -->
+   <!--
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+   -->
+   <script src="assets/js/main.js"></script>
+ </body>
+</html>

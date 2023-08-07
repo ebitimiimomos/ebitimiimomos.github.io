@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Google Fots -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+      <!-- Remixicon Icon -->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+      <!-- Remixicon Icon -->
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <!-- Main CSS -->
+      <link href="assets/css/main.css" rel="stylesheet">
+
+
+    <title>Clustering</title>
+  </head>
+  <body>
+   
+    <!-- header -->
+    <header class="ds-header" id="site-header">
+        <div class="container">
+            <div class="ds-header-inner">
+              <!-- logo -->
+              <a href="index.html" class="ds-logo">
+                <span>E</span>Ebitimi Imomos
+              </a>
+              <div class="text-center">
+                <a href="index.html#ds-work-section" class="ds-button ds-arrow-button"><i class="ri-arrow-left-s-line"></i> BAck</a>
+              </div>
+              <!-- logo -->
+              <!-- social -->
+              <ul class="ds-social">
+                <li><a href="https://github.com/ebitimiimomos" target="_blank"><i class="ri-github-fill"></i></a></li>
+                <li><a href="https://leetcode.com/Ebitimi/" target="_blank"><i class="iconify" data-icon="simple-icons:leetcode"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/ebitimi-imomotebegha-5a06b019a/" target="_blank"><i class="ri-linkedin-fill"></i></a></li>
+              </ul>
+              <!-- social -->
+            </div>
+        </div>
+    </header>
+    <!-- header -->
+   
+   <main class="ds-main-section">
+     <div class="container">
+        <div class="ds-work-details-section">
+
+            <div class="row justify-content-center">
+              <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                  <header class="ds-work-det-hed">
+                      <h1 class="ds-work-det-title">Data Clustering and Implementing Clustering Algorithms</h1>
+                      <span class="ds-work-det-dep">Python + Ms Excel + Ms Word</span>
+                  </header>
+                  <figure><img src="assets/images/clustering1.jpeg"></figure>
+                  <div class="ds-button-sec text-center" id="ds-button-sec">
+                    <a href="https://1drv.ms/u/s!AiMftykPpguWgj3t1jIklo28Zpvt?e=v4h48m" target="_blank" rel="noopener noreferrer" class="ds-button" id="ds-button">View Code</a>
+                 </div>
+                  <div class="ds-work-content-sec">
+                      <div class="row justify-content-center">
+                          <div>
+                            <h2>Project Overview</h2>
+                            <p>In this project, I implemented and compared three different clustering algorithms: k-means, k-means++, and Bisecting k-Means. Here's a summary of what I did:</p>
+                            <h2>1. K-means Clustering</h2>
+                            <pre>
+                              <code>
+                                def kMeans(data, k):
+                                # Initialize centroids randomly
+                                initial_centroids = data[np.random.choice(data.shape[0], size=k, replace=False)]
+                                while True:
+                                    # Assign each data point to the closest centroid
+                                    distances = np.sqrt(np.sum((data[:, np.newaxis] - initial_centroids)**2, axis=2))
+                                    # Compute the Euclidean distance between each data point and each centroid
+                                    # and assign the data point to the closest centroid
+                                    cluster_assignments = np.argmin(distances, axis=1)
+                                    # Find the index of the closest centroid for each data point
+                                    # Compute new centroids based on the mean of the data points in each cluster
+                                    new_centroids = np.array([data[cluster_assignments == i].mean(axis=0) for i in range(k)])
+                                    # Calculate the mean of the data points that belong to each cluster and set the new centroids
+                                    if np.array_equal(new_centroids, initial_centroids):
+                                        # If the new centroids are the same as the old centroids, the algorithm has converged
+                                        break
+                                    
+                                    initial_centroids = new_centroids
+                                    # Update the centroids to the new centroids for the next iteration
+                            
+                                return cluster_assignments, new_centroids
+                                # Return the final cluster assignments and centroids
+                              </code>
+                              </pre>
+                              
+                            <p>I implemented the k-means clustering algorithm, an unsupervised machine learning algorithm that partitions a dataset into k clusters. The algorithm randomly selects k initial centroids, assigns data points to the nearest centroid, and then updates the centroids based on the mean of the assigned data points. This process iterates until convergence is reached. I evaluated the clustering performance using the Silhouette coefficient.</p>
+                            <h2>2. K-means++ Clustering</h2>
+                            <pre>
+                              <code>
+                                def kMeansPlusPlus(data, k):
+                                # Create an empty array of size (k, number of features in data)
+                                initial_centroids = np.zeros((k, data.shape[1]))
+                                # Choose a random data point to be the first centroid
+                                initial_centroids[0] = data[np.random.choice(data.shape[0], 1), :]
+                            
+                            # Select the remaining centroids using the K-means++ initialization method
+                                for i in range(1, k):
+                                    # Calculate the distance between each data point and the existing centroids
+                                    distances = np.zeros((data.shape[0], i))
+                                    for j in range(i):
+                                        distances[:, j] = np.linalg.norm(data - initial_centroids[j], axis=1)
+                                    min_dists = np.min(distances, axis=1)
+                                    # Compute the probability of choosing a data point as the next centroid based on the distance
+                                    probs = min_dists / np.sum(min_dists)
+                                    # Randomly select the next centroid based on the probability distribution
+                                    initial_centroids[i] = data[np.random.choice(data.shape[0], 1, p=probs), :]
+                                # Use the k-means algorithm to assign data points to the nearest centroid and optimize centroids
+                                cluster_assignments, centroids = kMeans(data, k)
+                            
+                                return centroids, cluster_assignments
+                                # Return the final cluster assignments and centroids
+                              </code>
+                              </pre>
+                              
+                            <p>I also implemented the k-means++ clustering algorithm, an extension of the k-means algorithm. K-means++ improves the initial centroid selection to achieve more accurate and stable clustering results. It selects the initial centroids based on probabilities proportional to the minimum squared distance of each data point from existing centroids. The rest of the algorithm remains similar to the standard k-means. I evaluated the clustering performance using the Silhouette coefficient.</p>
+                            <h2>3. Bisecting k-Means Clustering</h2>
+                            <pre>
+                              <code>
+                                def bisectingkMeans(data, k):
+                                cluster_assignments = np.zeros(data.shape[0], dtype=int) # Initialize cluster assignments to all zeros
+                                initial_centroids = [data.mean(axis=0)] # Set initial centroids to the mean of the data
+                                hierarchy = [(cluster_assignments, initial_centroids)] # Initialize hierarchy with the first cluster assignments and initial centroids
+                               
+                                # Continue bisecting until the desired number of clusters is reached
+                                while len(hierarchy) < k:
+                                    # Calculate SSE for each cluste
+                                    sse = [np.sum([distance(x, c) ** 2 for x in data[cluster_assignments == i]])
+                                           for i, c in enumerate(initial_centroids)]
+                                    
+                                    # Find the index of the cluster with the largest SSE
+                                    largestClusterSSE = np.argmax(sse) 
+                                    # Split the largest cluster using k-means clustering
+                                    clusterData = data[cluster_assignments == largestClusterSSE]
+                                    new_assignments, centroids = kMeans(clusterData,2)
+                                    # Reassign cluster assignments based on k-means output
+                                    new_assignments[new_assignments == 0] = largestClusterSSE
+                                    new_assignments[new_assignments == 1] = len(initial_centroids)
+                                    # Update cluster assignments and centroids in the hierarchy
+                                    cluster_assignments[cluster_assignments == largestClusterSSE] = new_assignments
+                                    initial_centroids.pop(largestClusterSSE)
+                                    initial_centroids += list(centroids)
+                                    hierarchy.append((cluster_assignments.copy(), initial_centroids.copy()))
+                                   
+                                return hierarchy
+                                #Return Hierarchy
+                              </code>
+                              </pre>
+                              
+                            <p>The Bisecting k-Means algorithm is a hierarchical clustering algorithm that recursively bisects clusters until the desired number of clusters is reached. It starts with all data points in a single cluster and then iteratively splits the cluster into two clusters using k-means clustering. This process continues until the desired number of clusters is achieved. I evaluated the clustering performance using the Silhouette coefficient.</p>
+                            <h2>Results</h2>
+                            <p>Based on the results, I found that the Bisecting k-Means algorithm consistently outperformed the other two algorithms in terms of Silhouette coefficient. For example, when the K value was 5, Bisecting k-Means achieved a Silhouette coefficient of 0.146, while k-means++ had a Silhouette coefficient of 0.135. This suggests that Bisecting k-Means is better at separating data points into distinct clusters.</p>
+                            <p>However, when comparing the highest Silhouette coefficients achieved among the three algorithms, k=2 achieved the highest score. This is because when there are only two clusters, all data points are either in one cluster or the other, resulting in no separation between clusters, and all data points have the same Silhouette coefficient.</p>
+                            <h2>Conclusion</h2>
+                            <p>In conclusion, the Bisecting k-Means algorithm appears to consistently produce better clustering results than the other algorithms, but the best setting for the number of clusters (k) may vary based on the specific data and problem at hand.</p>
+
+
+                          </div>
+                      </div>
+					
+                  </div>
+                 
+              </div>
+            </div>
+        </div>
+     </div>
+   </main>
+
+   <!--  footer -->
+   <footer class="ds-footer text-center" id="ds-footer">
+    <div class="container">
+       <section>
+         <span>Contact</span>
+         <h4>Ready to talk?</h4>
+         <p>Feel free to contact me</p>
+         <a href="mailto:ebitimiimomos@outlook.com" class="ds-button">Send Me a Message!</a>
+         
+                       <ul class="ds-social">
+               <li><a href="https://github.com/ebitimiimomos" target="_blank"><i class="ri-github-fill"></i></a></li>
+               <li><a href="https://leetcode.com/Ebitimi/" target="_blank"><i class="iconify" data-icon="simple-icons:leetcode"></i></a></li>
+               <li><a href="https://www.linkedin.com/in/ebitimi-imomotebegha-5a06b019a/" target="_blank"><i class="ri-linkedin-fill"></i></a></li>
+             </ul>
+       </section>
+       <span class="ds-copyright">© 2023 Ebitimi Imomotebegha.</span>
+    </div>
+    
+    
+    
+  </footer>
+  
+  
+
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <!-- Option 1: Bootstrap Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+   <!-- Option 2: Separate Popper and Bootstrap JS -->
+   <!--
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+   -->
+   <script src="assets/js/main.js"></script>
+ </body>
+</html>

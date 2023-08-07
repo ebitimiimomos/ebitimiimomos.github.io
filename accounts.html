@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Google Fots -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+      <!-- Remixicon Icon -->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+      <!-- Remixicon Icon -->
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <!-- Main CSS -->
+      <link href="assets/css/main.css" rel="stylesheet">
+
+
+    <title>Accounts</title>
+  </head>
+  <body>
+   
+    <!-- header -->
+    <header class="ds-header" id="site-header">
+        <div class="container">
+            <div class="ds-header-inner">
+              <!-- logo -->
+              <a href="index.html" class="ds-logo">
+                <span>E</span>Ebitimi Imomos
+              </a>
+              <div class="text-center">
+                <a href="index.html#ds-work-section" class="ds-button ds-arrow-button"><i class="ri-arrow-left-s-line"></i> BAck</a>
+              </div>
+              <!-- logo -->
+              <!-- social -->
+              <ul class="ds-social">
+                <li><a href="https://github.com/ebitimiimomos" target="_blank"><i class="ri-github-fill"></i></a></li>
+                <li><a href="https://leetcode.com/Ebitimi/" target="_blank"><i class="iconify" data-icon="simple-icons:leetcode"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/ebitimi-imomotebegha-5a06b019a/" target="_blank"><i class="ri-linkedin-fill"></i></a></li>
+              </ul>
+              <!-- social -->
+            </div>
+        </div>
+    </header>
+    <!-- header -->
+   
+   <main class="ds-main-section">
+     <div class="container">
+        <div class="ds-work-details-section">
+
+            <div class="row justify-content-center">
+              <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                  <header class="ds-work-det-hed">
+                      <h1 class="ds-work-det-title">Implement Object Oriented Programming using Bank Accounts</h1>
+                      <span class="ds-work-det-dep">Python + Ms Excel + Ms Word</span>
+                  </header>
+                  <figure><img src="assets/images/Accounts.jpg"></figure>
+                  <div class="ds-button-sec text-center" id="ds-button-sec">
+                    <a href="https://1drv.ms/u/s!AiMftykPpguWgkM96Z96Hqgf3JpG" target="_blank" rel="noopener noreferrer" class="ds-button" id="ds-button">View Code</a>
+                 </div>
+                  <div class="ds-work-content-sec">
+                      <div class="row justify-content-center">
+                          <div >
+                            <p>In this project, I created a basic bank account system using Python. The system consists of two classes: BasicAccount and PremiumAccount. The BasicAccount class allows users to open a simple bank account, deposit and withdraw money, check their balance, and issue a new card with an expiry date set to 3 years from the current month. Users can also close their account if their balance is positive.</p>
+                            <h2>BasicAccount Class</h2>
+                            <pre><code>
+                              class BasicAccount: 
+                                    #Define the Class Variables
+                                  acNum = 0
+                              
+                                   #Using the dunder method to define the initialiser giving the account name and opening balance.
+                                  def __init__(self, acName, openingBalance): #define the initialiser
+                                      self.name = str(acName) #account holder name
+                                      BasicAccount.acNum +=1
+                                      self.acNum = BasicAccount.acNum #number of the account
+                                      self.balance = float(openingBalance) #balance of the account
+                              
+                                      
+                                  # string representations that gives the account name and available balance
+                                  def __str__(self):
+                                      return f"{self.name}: £{self.balance}"
+                              
+                                  #deposit stated ammount, adjust balance approprately ,deposit can only be positive
+                                  def deposit(self, amount):
+                                      if amount >= 0:
+                                          self.balance += amount
+                                      else: 
+                                          print("error,please try again")
+                              
+                                  #withdraw stated amount
+                                  def withdraw(self, amount):
+                                      if self.balance >= amount:
+                                              self.balance -= amount
+                                              print ("{self.name} has withdrawn £{amount}.New balance is £{self.balance}".format(self=self,amount=amount))
+                                      else: #If an invalid amount is requested
+                                          print ("\n Can not withdraw £{amount}".format(amount=amount))
+                                  
+                                  def getAvailableBalance(self): #Returns the total balance that is available in the account
+                                      return self.balance
+                                  
+                                  def getBalance(self):
+                                      return self.balance
+                              
+                                  def printBalance(self): #the balance of the account
+                                      print(f"{self.name} balance is £{self.balance}.")
+                                      
+                                  def getName(self): #Returns the name of the account holder
+                                      return str(self.name)
+                                  
+                                  def getAcNum(self): #Returns the account number as a string
+                                      return f"{self.acNum}"
+
+
+                              </code></pre>
+                            <h2>PremiumAccount Class</h2>
+                            <pre><code>
+                              
+                              class PremiumAccount (BasicAccount):
+                              def __init__ (self, acName, openingBalance, initialOverdraft): #initialiser giving the account name, opening balance, and overdraft limit
+                                  super().__init__(acName,openingBalance)
+                                  self.overdraft = True
+                                  self.overdraftLimit = float(initialOverdraft)
+                          
+                              def __str__(self):
+                                  return f"Account holder name: {self.name} \nAccount balance £{self.balance} \nOverdraft Limit £{self.overdraftLimit}"
+                          
+                              #Sets the overdraft limit to the stated amount
+                              def setOverdraftLimit(self, max):
+                                  self.overdraftLimit = max
+                          
+                              def withdraw(self, amount): 
+                                  if self.balance + self.overdraftLimit >= amount: #if amount is larger than the balance and overdraft limit 
+                                      self.balance -= amount
+                                      print("{self.name} has withdrawn £{amount}. New balance is {self.balance}".format(self=self, amount=amount))
+                                  else:
+                                      print("Can not withdraw £{amount}".format(amount=amount))
+                                      
+                              def getAvailableBalance(self):#Returns the total balance that is available in the account including overdraft
+                                  return float(self.balance + self.overdraftLimit)
+                                  
+                              def printBalance(self):
+                                  if self.balance > 0:
+                                      print("Hello {self.name}, your available balance is £{self.balance}, overdraft remaining is £{self.overdraftLimit}.".format(self=self))
+                                  else:     
+                                      self.overdraft = self.overdraftLimit + self.balance
+                                      print("Hello {self.name}, your available balance is £{self.balance}, overdraft remaining is £{self.overdraft}.".format(self=self))
+                              
+                              def closeAccount(self):
+                                  return super().closeAccount()
+                            
+                            </code></pre>
+                            <h2>Object-Oriented Programming and Inheritance</h2>
+                            <p>Both classes demonstrate object-oriented programming principles. The PremiumAccount class is a subclass of BasicAccount, which means it inherits all the functionalities of BasicAccount and extends it with additional features. This inheritance allows users to have access to all the methods of BasicAccount and utilize the additional functionalities of PremiumAccount.</p>
+                            <h2>Conclusion</h2>
+                            <p>The project showcases the implementation of a basic bank account system using Python classes. Users can manage their bank accounts, deposit and withdraw money, check balances, and access relevant account information. The project effectively demonstrates object-oriented programming concepts, inheritance, and the use of class variables and methods to build a flexible and user-friendly bank account system.</p>
+                          </div>
+                      </div>
+					
+                  </div>
+                 
+              </div>
+            </div>
+        </div>
+     </div>
+   </main>
+
+   <!--  footer -->
+   <footer class="ds-footer text-center" id="ds-footer">
+    <div class="container">
+       <section>
+         <span>Contact</span>
+         <h4>Ready to talk?</h4>
+         <p>Feel free to contact me</p>
+         <a href="mailto:ebitimiimomos@outlook.com" class="ds-button">Send Me a Message!</a>
+         
+                       <ul class="ds-social">
+               <li><a href="https://github.com/ebitimiimomos" target="_blank"><i class="ri-github-fill"></i></a></li>
+               <li><a href="https://leetcode.com/Ebitimi/" target="_blank"><i class="iconify" data-icon="simple-icons:leetcode"></i></a></li>
+               <li><a href="https://www.linkedin.com/in/ebitimi-imomotebegha-5a06b019a/" target="_blank"><i class="ri-linkedin-fill"></i></a></li>
+             </ul>
+       </section>
+       <span class="ds-copyright">© 2023 Ebitimi Imomotebegha.</span>
+    </div>
+    
+    
+    
+  </footer>
+  
+  
+
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <!-- Option 1: Bootstrap Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+   <!-- Option 2: Separate Popper and Bootstrap JS -->
+   <!--
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+   -->
+   <script src="assets/js/main.js"></script>
+ </body>
+</html>
